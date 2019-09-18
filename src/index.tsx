@@ -1,14 +1,26 @@
 import * as React from "react";
 import { render } from "react-dom";
-
+import { Grid, Input, SumInput } from "./index.styles";
 import "./styles.css";
+
+const APP_CONFIG = {
+  defaultNumColumns: 4,
+  isGridSingleRow: false
+};
 
 class App extends React.Component {
   state = {
-    col: [0, 0, 0],
-    sum: 0
+    inputValues: ["0", "0", "0"]
   };
 
+  isValidNumber(value: string) {
+    return isNaN(+value);
+  }
+
+  /**
+   * TODO: Implement logic for decimals, K, M, B, T
+   * @param num
+   */
   abbrNum(num: number) {
     const K = "K";
     const M = "M";
@@ -21,42 +33,48 @@ class App extends React.Component {
     } else {
       return num;
     }
-
-    console.log(n);
     return n;
   }
 
-  sum(arr: number[]) {
-    const sum = arr.reduce((total, num) => {
-      return parseInt(total.toString(), 10) + parseInt(num.toString(), 10);
-    });
+  sum() {
+    const sum = this.state.inputValues.reduce(
+      (total: number, value: string): number => {
+        return parseInt(total.toString(), 10) + (parseInt(value, 10) || 0);
+      },
+      0
+    );
 
     return this.abbrNum(sum);
   }
 
-  handleChange(value, idx) {
-    const updatedCol = this.state.col.slice();
-    updatedCol[idx] = value;
-    this.sum(updatedCol);
-    this.setState({ col: updatedCol });
-  }
+  handleChange = (value, idx) => {
+    const updatedInputValues = [...this.state.inputValues];
+    updatedInputValues[idx] = value;
+    this.setState({ inputValues: updatedInputValues });
+  };
 
   render() {
     return (
       <div className="App">
-        {this.state.col.map((col, idx) => (
-          <div className="col">
-            <input
-              type="number"
-              value={col}
+        <Grid
+          maxColumns={
+            APP_CONFIG.isGridSingleRow
+              ? this.state.inputValues.length + 1
+              : APP_CONFIG.defaultNumColumns
+          }
+        >
+          {this.state.inputValues.map((currentValue, idx) => (
+            <Input
+              key={`input-${idx}`}
+              type="text"
+              value={currentValue}
+              hasError={this.isValidNumber(currentValue)}
               onChange={e => this.handleChange(e.target.value, idx)}
             />
-          </div>
-        ))}
+          ))}
 
-        <div className="col">
-          <input type="text" value={this.sum(this.state.col)} readOnly />
-        </div>
+          <SumInput type="text" value={this.sum()} readOnly />
+        </Grid>
       </div>
     );
   }
