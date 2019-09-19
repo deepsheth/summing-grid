@@ -9,7 +9,6 @@ import * as React from "react";
 import { render } from "react-dom";
 import { Grid, Input, SumInput } from "./index.styles";
 import { abbrNum } from "./utility";
-import "./styles.css";
 
 const APP_CONFIG = {
   defaultNumColumns: 4,
@@ -26,7 +25,7 @@ class App extends React.Component {
   }
 
   /**
-   * Adds all input fields together
+   * Adds all input fields together and returns the abbreviated sum
    */
   sum() {
     const sum = this.state.inputValues.reduce(
@@ -35,7 +34,6 @@ class App extends React.Component {
       },
       0
     );
-
     return abbrNum(sum);
   }
 
@@ -76,4 +74,4 @@ class App extends React.Component {
 }
 
 const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+render(<App />, rootElement || document.createElement("div"));

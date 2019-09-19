@@ -4,11 +4,17 @@
  * This utility class helps format the sum of all columns
  */
 
-const NUM_LABELS = {
+const numValue = {
   BILLION: 1000000000,
   MILLION: 1000000,
   THOUSAND: 1000
 };
+
+enum abbreviate {
+  BILLION = "B",
+  MILLION = "M",
+  THOUSAND = "K"
+}
 
 // Number of digits (not decimals) sum field must always display
 const FIXED_SUM_DIGITS = 3;
@@ -23,12 +29,12 @@ export function abbrNum(num: number) {
   let res = sum.toString();
 
   // Divides numbers in order to abbrevate and round their value
-  if (sum >= NUM_LABELS.BILLION) {
-    res = truncate(sum / NUM_LABELS.BILLION, "B");
-  } else if (sum >= NUM_LABELS.MILLION) {
-    res = truncate(sum / NUM_LABELS.MILLION, "M");
-  } else if (sum >= NUM_LABELS.THOUSAND) {
-    res = truncate(sum / NUM_LABELS.THOUSAND, "K");
+  if (sum >= numValue.BILLION) {
+    res = truncate(sum / numValue.BILLION, abbreviate.BILLION);
+  } else if (sum >= numValue.MILLION) {
+    res = truncate(sum / numValue.MILLION, abbreviate.MILLION);
+  } else if (sum >= numValue.THOUSAND) {
+    res = truncate(sum / numValue.THOUSAND, abbreviate.THOUSAND);
   } else {
     // Numbers < 1000 have no unit
     res = truncate(sum, "");
