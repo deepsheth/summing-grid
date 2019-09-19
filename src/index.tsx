@@ -40,7 +40,7 @@ export class App extends React.Component {
   /**
    * Updates the specific index of the inputValues array on input change
    */
-  handleChange = (value, idx) => {
+  handleChange = (value: string, idx: number) => {
     const updatedInputValues = [...this.state.inputValues];
     updatedInputValues[idx] = value;
     this.setState({ inputValues: updatedInputValues });

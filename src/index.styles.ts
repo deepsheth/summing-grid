@@ -15,7 +15,8 @@ export const Grid = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
   @media (min-width: 720px) {
-    grid-template-columns: ${props => `repeat(${props.maxColumns}, 1fr)`};
+    grid-template-columns: ${(props: { maxColumns: number }) =>
+      `repeat(${props.maxColumns}, 1fr)`};
   }
 `;
 
@@ -25,7 +26,8 @@ export const Input = styled.input`
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
   text-align: right;
-  color: ${props => (props.hasError ? "mediumvioletred" : "#333333")};
+  color: ${(props: { hasError?: boolean }) =>
+    props.hasError ? "mediumvioletred" : "#333333"};
   padding: 4px 8px;
   min-width: 100px;
 `;
