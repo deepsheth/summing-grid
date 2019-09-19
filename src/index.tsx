@@ -1,5 +1,8 @@
 /**
  * @author Deep Sheth <djsdeep@gmail.com>
+ *
+ * Responsive web app that displays columns of input fields. When input values are modified, their
+ * sum is calculated.
  */
 
 import * as React from "react";
@@ -23,8 +26,7 @@ class App extends React.Component {
   }
 
   /**
-   * TODO: Implement logic for decimals, K, M, B, T
-   * @param num
+   * Adds all input fields together
    */
   sum() {
     const sum = this.state.inputValues.reduce(
@@ -37,6 +39,9 @@ class App extends React.Component {
     return abbrNum(sum);
   }
 
+  /**
+   * Updates the specific index of the inputValues array on input change
+   */
   handleChange = (value, idx) => {
     const updatedInputValues = [...this.state.inputValues];
     updatedInputValues[idx] = value;

@@ -9,6 +9,7 @@ import styled from "styled-components";
 export const Grid = styled.div`
   display: grid;
   border: 1px solid black;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
 
   @media (min-width: 360px) {
     grid-template-columns: repeat(2, 1fr);
@@ -19,7 +20,8 @@ export const Grid = styled.div`
 `;
 
 export const Input = styled.input`
-  font-size: 1.5em;
+  font-size: 2em;
+  font-weight: bold;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
     monospace;
   text-align: right;
@@ -29,5 +31,5 @@ export const Input = styled.input`
 `;
 
 export const SumInput = styled(Input)`
-  color: mediumspringgreen;
+  color: mediumturquoise;
 `;
