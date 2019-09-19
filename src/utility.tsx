@@ -5,12 +5,14 @@
  */
 
 const numValue = {
+  TRILLION: 1000000000000,
   BILLION: 1000000000,
   MILLION: 1000000,
   THOUSAND: 1000
 };
 
 enum abbreviate {
+  TRILLION = "T",
   BILLION = "B",
   MILLION = "M",
   THOUSAND = "K"
@@ -29,7 +31,9 @@ export function abbrNum(num: number) {
   let res = sum.toString();
 
   // Divides numbers in order to abbrevate and round their value
-  if (sum >= numValue.BILLION) {
+  if (sum >= numValue.TRILLION) {
+    res = truncate(sum / numValue.TRILLION, abbreviate.TRILLION);
+  } else if (sum >= numValue.BILLION) {
     res = truncate(sum / numValue.BILLION, abbreviate.BILLION);
   } else if (sum >= numValue.MILLION) {
     res = truncate(sum / numValue.MILLION, abbreviate.MILLION);

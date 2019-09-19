@@ -15,7 +15,7 @@ const APP_CONFIG = {
   isGridSingleRow: false
 };
 
-class App extends React.Component {
+export class App extends React.Component {
   state = {
     inputValues: ["0", "0", "0"]
   };
@@ -74,4 +74,4 @@ class App extends React.Component {
 }
 
 const rootElement = document.getElementById("root");
-render(<App />, rootElement || document.createElement("div"));
+render(<App />, rootElement);
