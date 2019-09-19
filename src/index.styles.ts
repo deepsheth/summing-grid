@@ -1,3 +1,9 @@
+/**
+ * @author Deep Sheth <djsdeep@gmail.com>
+ *
+ * Uses styled components to format the grid and columns
+ */
+
 import styled from "styled-components";
 
 export const Grid = styled.div`

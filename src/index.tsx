@@ -1,6 +1,11 @@
+/**
+ * @author Deep Sheth <djsdeep@gmail.com>
+ */
+
 import * as React from "react";
 import { render } from "react-dom";
 import { Grid, Input, SumInput } from "./index.styles";
+import { abbrNum } from "./utility";
 import "./styles.css";
 
 const APP_CONFIG = {
@@ -21,21 +26,6 @@ class App extends React.Component {
    * TODO: Implement logic for decimals, K, M, B, T
    * @param num
    */
-  abbrNum(num: number) {
-    const K = "K";
-    const M = "M";
-    let n = "";
-
-    if (num >= 1000 && num < 1000000) {
-      n = (num / 1000).toFixed(3) + K;
-    } else if (num >= 1000000) {
-      n = (num / 1000000).toFixed(3) + M;
-    } else {
-      return num;
-    }
-    return n;
-  }
-
   sum() {
     const sum = this.state.inputValues.reduce(
       (total: number, value: string): number => {
@@ -44,7 +34,7 @@ class App extends React.Component {
       0
     );
 
-    return this.abbrNum(sum);
+    return abbrNum(sum);
   }
 
   handleChange = (value, idx) => {
