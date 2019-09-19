@@ -3,6 +3,19 @@
 Author: Deep Sheth  
 Email: djsdeep@gmail.com
 
+## Usage
+This app is bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+
+1. Clone the repo
+2. Install dependencies 
+   ```
+    npm install
+   ```
+3. Start development
+   ```
+    npm start
+   ```
+
 ## Development Considerations
 
 1. All of the input fields are controlled components and the `App` manages the state for the inputs. This maintains a single source of truth for their values.
